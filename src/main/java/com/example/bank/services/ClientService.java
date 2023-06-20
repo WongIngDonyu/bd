@@ -14,11 +14,6 @@ public class ClientService {
 
     public int getBankRatingByPassportSeriesAndNumber(String passportSeriesAndNumber) {
         Client client = clientRepository.findByHumanPassportSeriesAndNumber(passportSeriesAndNumber);
-        if (client != null) {
             return client.getBank_rating();
-        } else {
-            // Обработка случая, когда клиент не найден
-            return 0; // Или другое значение по умолчанию
-        }
     }
 }

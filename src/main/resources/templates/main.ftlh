@@ -51,7 +51,7 @@
             <tbody>
             <#list humans as human>
                 <tr>
-                    <td>${human.getName()} ${human.getMiddle_name()} ${human.getLast_name()}</td>
+                    <td>${human.getLast_name()} ${human.getName()} ${human.getMiddle_name()}</td>
                     <td>${human.getAge()}</td>
                     <td>${human.getPassport_series_and_number()}</td>
                     <td>${human.getCitizen().getCitizenship()}</td>

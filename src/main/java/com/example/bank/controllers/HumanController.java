@@ -7,8 +7,6 @@ import com.example.bank.models.Human;
 import com.example.bank.repositories.CountryRepository;
 import com.example.bank.repositories.HumanRepository;
 import com.example.bank.services.*;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Controller
-@Slf4j
-@RequiredArgsConstructor
 public class HumanController {
     private final HumanService  humanService;
     private final HumanRepository humanRepository;
@@ -31,6 +27,19 @@ public class HumanController {
     private final CreditService creditService;
     private final DepositService depositService;
     private final ClientService clientService;
+
+    public HumanController(HumanService humanService, HumanRepository humanRepository, CountryRepository countryRepository, CitizenService citizenService, CountryService countryService, CurrencyService currencyService, CreditService creditService, DepositService depositService, ClientService clientService) {
+        this.humanService = humanService;
+        this.humanRepository = humanRepository;
+        this.countryRepository = countryRepository;
+        this.citizenService = citizenService;
+        this.countryService = countryService;
+        this.currencyService = currencyService;
+        this.creditService = creditService;
+        this.depositService = depositService;
+        this.clientService = clientService;
+    }
+
     @GetMapping("/")
     public String humanPage(Model model){
         model.addAttribute("humans", humanService.listHuman());
@@ -55,11 +64,6 @@ public class HumanController {
         humanRepository.save(human);
         return  "redirect:/";
     }
-    /* @PostMapping("/deleteHuman/{id}")
-    public String newHumanPost(@PathVariable("id") Long id, Human human) {
-        humanService.deleteHuman(id);
-        return  "redirect:/";
-    } */
     @PostMapping("/deleteHuman/{id}")
     public String newHumanPost(@PathVariable("id") Long id, Human human) {
         humanService.deleteHuman(id);
