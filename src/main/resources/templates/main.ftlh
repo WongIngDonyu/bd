@@ -104,6 +104,27 @@
             </div>
             <button type="submit" class="btn btn-primary">Найти наименование валюты в этом кредите и вкладе</button>
         </form>
+        <form method="GET" action="/search3" class="mb-3">
+            <div class="mb-3">
+                <label for="passportSeriesAndNumber" class="form-label">Серия и номер паспорта</label>
+                <input type="text" class="form-control" id="passportSeriesAndNumber" name="passportSeriesAndNumber">
+            </div>
+            <button type="submit" class="btn btn-primary">Найти банковский рейтинг человека по серии и номеру его паспорта</button>
+        </form>
+        <form method="GET" action="/search4" class="mb-3">
+            <div class="mb-3">
+                <label for="name" class="form-label">Имя</label>
+                <input type="text" class="form-control" id="name" name="name">
+            </div>
+            <button type="submit" class="btn btn-primary">Найти индекс человека по имени</button>
+        </form>
+        <form method="GET" action="/search5" class="mb-3">
+            <div class="mb-3">
+                <label for="address" class="form-label">Адресс</label>
+                <input type="text" class="form-control" id="address" name="address">
+            </div>
+            <button type="submit" class="btn btn-primary">Найти фамилию человека, живущего по адресу</button>
+        </form>
         <a href="/newHuman" class="btn btn-primary">Добавить нового пользователя</a>
     </div>
 </div>

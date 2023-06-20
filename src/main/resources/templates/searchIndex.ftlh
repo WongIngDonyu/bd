@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Bootstrap testing</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <style>
+        div.container6 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+        .empty{
+            wight: 50px;
+            height: 100px;
+        }
+        button.btn-primary {
+            margin-bottom: 20px;
+        }
+        table {
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script src="../static/js/DarkChanger.js"></script>
+<div class="container container6">
+    <div class="row">
+        <div class="empty"></div>
+        <table>
+            <thead>
+            <tr>
+                <th>Индекс человека</th>
+            </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                        <td>${index}</td>
+                    </tr>
+            </tbody>
+        </table>
+        <a href="/" class="btn btn-primary">Назад</a>
+    </div>
+</div>
+</body>
+</html>

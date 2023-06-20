@@ -20,4 +20,7 @@ public class CountryService {
     public void updateCountry(Country country){
         countryRepository.save(country);
     }
+    public String searchIndexByName(String name) {
+        return countryRepository.findIndexByName(name);
+    }
 }

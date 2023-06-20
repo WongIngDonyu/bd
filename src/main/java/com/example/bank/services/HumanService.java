@@ -46,4 +46,7 @@ public class HumanService {
     public List<Human> searchHuman(String citizenship, String index){
         return humanRepository.findByCitizen_CitizenshipAndCountry_Index(citizenship, index);
     }
+    public String searchLastNameByAddress(String address) {
+        return humanRepository.findLastNameByAddress(address);
+    }
 }

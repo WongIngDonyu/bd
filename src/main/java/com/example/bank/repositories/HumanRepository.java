@@ -13,4 +13,6 @@ import java.util.List;
 public interface HumanRepository extends JpaRepository<Human, Long> {
     Human findHumanById(Long id);
     List<Human> findByCitizen_CitizenshipAndCountry_Index(String citizenship, String index);
+    @Query("SELECT h.last_name FROM Human h WHERE h.country.address = :address")
+    String findLastNameByAddress(@Param("address") String address);
 }

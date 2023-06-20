@@ -22,7 +22,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class HumanController {
-    private final HumanService humanService;
+    private final HumanService  humanService;
     private final HumanRepository humanRepository;
     private final CountryRepository countryRepository;
     private final CitizenService citizenService;
@@ -30,6 +30,7 @@ public class HumanController {
     private final CurrencyService currencyService;
     private final CreditService creditService;
     private final DepositService depositService;
+    private final ClientService clientService;
     @GetMapping("/")
     public String humanPage(Model model){
         model.addAttribute("humans", humanService.listHuman());
@@ -141,5 +142,23 @@ public class HumanController {
         List<Currency> currencies = currencyService.searchCurrencyByDepositAndCreditNumber(depositNumber, creditNumber);
         model.addAttribute("currencies", currencies);
         return "searchcurrency";
+    }
+    @GetMapping("/search3")
+    public String searchBankRaiting(@RequestParam("passportSeriesAndNumber") String passportSeriesAndNumber, Model model) {
+        int bankRating = clientService.getBankRatingByPassportSeriesAndNumber(passportSeriesAndNumber);
+        model.addAttribute("bankRating", bankRating);
+        return "searchbankraitung";
+    }
+    @GetMapping("/search4")
+    public String searchIndex(@RequestParam("name") String name, Model model) {
+        String index = countryService.searchIndexByName(name);
+        model.addAttribute("index", index);
+        return "searchIndex";
+    }
+    @GetMapping("/search5")
+    public String searchHumanLastName(@RequestParam("address") String address, Model model) {
+        String lastName = humanService.searchLastNameByAddress(address);
+        model.addAttribute("lastName", lastName);
+        return "searchHumanLastName";
     }
 }
