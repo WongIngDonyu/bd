@@ -1,14 +1,9 @@
 package com.example.bank.models;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "currencys")
 public class Currency {
     @Id
@@ -19,6 +14,15 @@ public class Currency {
     private List<Credit> credits;
     @OneToMany(mappedBy = "currency_id", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     private List<Deposit> deposits;
+    public Currency(){
+
+    }
+    public Currency(Long id, String name, List<Credit> credits, List<Deposit> deposits) {
+        this.id = id;
+        this.name = name;
+        this.credits = credits;
+        this.deposits = deposits;
+    }
 
     public Long getId() {
         return id;

@@ -2,12 +2,11 @@ package com.example.bank.controllers;
 
 import com.example.bank.models.Citizen;
 import com.example.bank.models.Country;
+import com.example.bank.models.Currency;
 import com.example.bank.models.Human;
 import com.example.bank.repositories.CountryRepository;
 import com.example.bank.repositories.HumanRepository;
-import com.example.bank.services.CitizenService;
-import com.example.bank.services.CountryService;
-import com.example.bank.services.HumanService;
+import com.example.bank.services.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -28,9 +27,14 @@ public class HumanController {
     private final CountryRepository countryRepository;
     private final CitizenService citizenService;
     private final CountryService countryService;
+    private final CurrencyService currencyService;
+    private final CreditService creditService;
+    private final DepositService depositService;
     @GetMapping("/")
     public String humanPage(Model model){
         model.addAttribute("humans", humanService.listHuman());
+        model.addAttribute("credits", creditService.listCredit());
+        model.addAttribute("deposits", depositService.listDeposit());
         return  "main";
     }
     @GetMapping("/newHuman")
@@ -50,6 +54,11 @@ public class HumanController {
         humanRepository.save(human);
         return  "redirect:/";
     }
+    /* @PostMapping("/deleteHuman/{id}")
+    public String newHumanPost(@PathVariable("id") Long id, Human human) {
+        humanService.deleteHuman(id);
+        return  "redirect:/";
+    } */
     @PostMapping("/deleteHuman/{id}")
     public String newHumanPost(@PathVariable("id") Long id, Human human) {
         humanService.deleteHuman(id);
@@ -126,5 +135,11 @@ public class HumanController {
         List<Human> foundHumans = humanService.searchHuman(citizenship, index);
         model.addAttribute("humans", foundHumans);
         return "searchhumans";
+    }
+    @GetMapping("/search2")
+    public String searchCurrency(@RequestParam("deposit_number") String depositNumber,@RequestParam("credit_number") String creditNumber,Model model) {
+        List<Currency> currencies = currencyService.searchCurrencyByDepositAndCreditNumber(depositNumber, creditNumber);
+        model.addAttribute("currencies", currencies);
+        return "searchcurrency";
     }
 }

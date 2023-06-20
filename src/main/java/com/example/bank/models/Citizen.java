@@ -1,14 +1,11 @@
 package com.example.bank.models;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+
 
 import java.util.List;
 
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "citizens")
 public class Citizen {
     @Id
@@ -39,5 +36,14 @@ public class Citizen {
 
     public void setHumans(List<Human> humans) {
         this.humans = humans;
+    }
+
+    public Citizen(Long id, String citizenship, List<Human> humans) {
+        this.id = id;
+        this.citizenship = citizenship;
+        this.humans = humans;
+    }
+    public Citizen(){
+
     }
 }

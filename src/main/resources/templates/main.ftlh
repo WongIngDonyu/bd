@@ -10,8 +10,6 @@
     <style>
         div.container6 {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
             align-items: center;
             justify-content: center;
             display: flex;
@@ -80,6 +78,31 @@
                 <input type="text" class="form-control" id="index" name="index">
             </div>
             <button type="submit" class="btn btn-primary">Найти людей</button>
+        </form>
+        <form method="GET" action="/search2" class="mb-3">
+            <div class="form-floating mb-3">
+                <label for="deposit_number" style="margin-top: -15px">Номер депозита</label>
+                <select id="deposit_number" required name="deposit_number" class="form-control">
+                    <option value="">Депозит не выбран</option>
+                    <#if deposits?exists>
+                        <#list deposits as deposit>
+                            <option value=${deposit.id}>${deposit.getDeposit_number()} </option>
+                        </#list>
+                    </#if>
+                </select>
+            </div>
+            <div class="form-floating mb-3">
+                <label for="credit_number" style="margin-top: -15px">Номер кредита</label>
+                <select id="credit_number" required name="credit_number" class="form-control">
+                    <option value="">Кредит не выбран</option>
+                    <#if credits?exists>
+                        <#list credits as credit>
+                            <option value=${credit.id}>${credit.getCredit_number()} </option>
+                        </#list>
+                    </#if>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Найти наименование валюты в этом кредите и вкладе</button>
         </form>
         <a href="/newHuman" class="btn btn-primary">Добавить нового пользователя</a>
     </div>

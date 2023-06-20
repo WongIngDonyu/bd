@@ -1,14 +1,10 @@
 package com.example.bank.models;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Table(name = "countrys")
 public class Country {
     @Id
@@ -16,8 +12,19 @@ public class Country {
     private Long id;
     private String address;
     private String index;
-    @OneToMany(mappedBy = "country", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "country", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Human> humans;
+
+    public Country(){
+
+    }
+
+    public Country(Long id, String address, String index, List<Human> humans) {
+        this.id = id;
+        this.address = address;
+        this.index = index;
+        this.humans = humans;
+    }
 
     public Long getId() {
         return id;

@@ -24,12 +24,18 @@ public class HumanService {
     public void saveHuman(Human human){
         humanRepository.save(human);
     }
-    public void deleteHuman(Long id) {
+    /* public void deleteHuman(Long id) {
         Human human = humanRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Human not found"));
         Country country = human.getCountry();
         humanRepository.delete(human);
         countryRepository.delete(country);
+    } */
+    public void deleteHuman(Long humanId) {
+        Human human = humanRepository.findById(humanId).orElse(null);
+        if (human != null) {
+            humanRepository.delete(human);
+        }
     }
     public Human getHumanById(Long id){
         return humanRepository.findHumanById(id);

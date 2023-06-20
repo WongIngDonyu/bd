@@ -1,14 +1,9 @@
 package com.example.bank.models;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "humans")
 public class Human {
     @Id
@@ -24,13 +19,17 @@ public class Human {
     @JoinColumn(name = "citizen_id")
     private Citizen citizen;
 
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id")
     private Country country;
-    @OneToMany(mappedBy = "human_id", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "human_id", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Client> clients;
-    @OneToMany(mappedBy = "human_id", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "human_id", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Employee> employees;
+
+    public Human(){
+
+    }
 
     public Long getId() {
         return id;
@@ -109,6 +108,18 @@ public class Human {
     }
 
     public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
+    public Human(Long id, String passport_series_and_number, String name, String last_name, String middle_name, Integer age, Citizen citizen, Country country, List<Client> clients, List<Employee> employees) {
+        this.id = id;
+        this.passport_series_and_number = passport_series_and_number;
+        this.name = name;
+        this.last_name = last_name;
+        this.middle_name = middle_name;
+        this.age = age;
+        this.citizen = citizen;
+        this.country = country;
+        this.clients = clients;
         this.employees = employees;
     }
 }
